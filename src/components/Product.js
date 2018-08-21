@@ -1,10 +1,44 @@
 import React from "react";
 import { Col } from "reactstrap";
 
-export default class Product extends React.Component {
+class Product extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isMouseEnter: false
+    };
+
+    this.handleMouseEnter = this.handleMouseEnter.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
+    this.handleRemoveClick = this.handleRemoveClick.bind(this);
+  }
+
+  handleMouseEnter() {
+    this.setState({ isMouseEnter: true });
+  }
+
+  handleMouseLeave() {
+    this.setState({ isMouseEnter: false });
+  }
+
+  handleRemoveClick() {
+    this.props.onRemoveClick(this.props.data.id);
+  }
+
   render() {
     return (
-      <Col className="product" xs="3">
+      <Col
+        className="product"
+        xs="3"
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+      >
+        {this.state.isMouseEnter && (
+          <div className="product-remove-btn" onClick={this.handleRemoveClick}>
+            x
+          </div>
+        )}
         <div
           className="product-image"
           style={{ backgroundImage: `url(${this.props.data.imageURL})` }}
@@ -16,3 +50,5 @@ export default class Product extends React.Component {
     );
   }
 }
+
+export default Product;

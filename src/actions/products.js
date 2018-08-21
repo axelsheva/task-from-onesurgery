@@ -1,4 +1,5 @@
 export const ADD_PRODUCT = "ADD_PRODUCT";
+export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 
 export const addProduct = product => (dispatch, getState) => {
   const { products } = getState();
@@ -9,3 +10,8 @@ export const addProduct = product => (dispatch, getState) => {
     payload: { ...product, id: lastProduct.id + 1, ingredientsIds: [] }
   });
 };
+
+export const removeProduct = id => ({
+  type: REMOVE_PRODUCT,
+  payload: id
+});

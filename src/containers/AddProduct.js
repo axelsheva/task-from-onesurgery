@@ -8,7 +8,11 @@ class AddProduct extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { name: "", imageURL: "" };
+    this.state = {
+      name: "Гамбургер",
+      imageURL:
+        "https://cdn.pizket.com/images/photo/256x256/5389923e674422d00de9adf1e44c0acf.jpg"
+    };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

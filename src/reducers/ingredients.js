@@ -61,6 +61,8 @@ const initialState = [
   }
 ];
 
-export default function ingredients(state = initialState) {
+const ingredients = (state = initialState) => {
   return state;
-}
+};
+
+export default ingredients;

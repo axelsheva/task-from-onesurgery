@@ -27,3 +27,12 @@
 .add-product {
   padding: 15px 0;
 }
+
+.product-remove-btn {
+  width: 20px;
+  position: absolute;
+  right: 0;
+  margin-right: 14px;
+  background-color: #fff;
+  text-align: center;
+}
