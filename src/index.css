@@ -1,0 +1,25 @@
+.navbar {
+  margin-bottom: 15px;
+}
+
+.container {
+  background-color: #f8f9fa;
+}
+
+.product {
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.product-name {
+  text-align: center;
+}
+
+.product-image {
+  width: 256px;
+  height: 256px;
+}
+
+.product-list {
+  padding-top: 15px;
+}
