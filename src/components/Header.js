@@ -1,13 +1,6 @@
 import React from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink
-} from "reactstrap";
+import { Link } from "react-router-dom";
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -26,12 +19,16 @@ export default class Header extends React.Component {
   render() {
     return (
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">FastFood</NavbarBrand>
+        <Link className="navbar-brand" to="/">
+          FastFood
+        </Link>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="/add">Add product</NavLink>
+              <Link className="nav-link" to="/add-product">
+                Add product
+              </Link>
             </NavItem>
           </Nav>
         </Collapse>

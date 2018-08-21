@@ -4,7 +4,7 @@ import { Container } from "reactstrap";
 
 import Header from "../components/Header";
 import ProductList from "../containers/ProductList";
-import CreateProduct from "../containers/CreateProduct";
+import AddProduct from "../containers/AddProduct";
 
 const routes = (
   <div>
@@ -12,7 +12,7 @@ const routes = (
     <Container>
       <Switch>
         <Route exact path="/" component={ProductList} />
-        <Route path="/add" component={CreateProduct} />
+        <Route path="/add-product" component={AddProduct} />
       </Switch>
     </Container>
   </div>

@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import burgers from "./burgers";
+import products from "./products";
 import ingredients from "./ingredients";
 
 export default combineReducers({
   ingredients,
-  burgers
+  products
 });

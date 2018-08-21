@@ -2,14 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { Row } from "reactstrap";
 import Product from "../components/Product";
-import { selectBurgers } from "../selectors/burgers";
+import { selectProducts } from "../selectors/products";
 
 class ProductList extends React.Component {
   render() {
     return (
       <Row className="product-list">
-        {this.props.burgers.map((burger, i) => (
-          <Product key={burger.id} data={burger} />
+        {this.props.products.map((products, i) => (
+          <Product key={products.id} data={products} />
         ))}
       </Row>
     );
@@ -17,7 +17,7 @@ class ProductList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  burgers: selectBurgers(state)
+  products: selectProducts(state)
 });
 
 export default connect(mapStateToProps)(ProductList);
