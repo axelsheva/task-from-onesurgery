@@ -1,17 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { createBrowserHistory } from "history";
+
+import registerServiceWorker from "./registerServiceWorker";
+
+import configureStore from "./store/configureStore";
+import App from "./App";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import App from "./components/App";
-import registerServiceWorker from "./registerServiceWorker";
-import { Provider } from "react-redux";
-import configureStore from "./store/configureStore";
 
-const store = configureStore();
+const history = createBrowserHistory();
+
+const store = configureStore({}, history);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <App history={history} />
   </Provider>,
   document.getElementById("root")
 );
