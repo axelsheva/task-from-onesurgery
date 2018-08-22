@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router";
 import { Container } from "reactstrap";
 
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import ProductList from "../containers/ProductList";
 import AddProduct from "../containers/AddProduct";
 import AddIngredient from "../containers/AddIngredient";
@@ -11,7 +12,7 @@ import ProductDetails from "../containers/ProductDetails";
 const routes = (
   <div>
     <Header />
-    <Container>
+    <Container className="content">
       <Switch>
         <Route exact path="/" component={ProductList} />
         <Route path="/add-product" component={AddProduct} />
@@ -19,6 +20,7 @@ const routes = (
         <Route path="/products/:id" component={ProductDetails} />
       </Switch>
     </Container>
+    <Footer />
   </div>
 );
 

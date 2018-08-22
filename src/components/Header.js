@@ -11,11 +11,13 @@ export default class Header extends React.Component {
       isOpen: false
     };
   }
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
+
   render() {
     return (
       <Navbar color="light" light expand="md">
