@@ -7,6 +7,16 @@ import { selectProducts } from "../selectors/products";
 import { removeProduct } from "../actions/products";
 
 class ProductList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleProductClick = this.handleProductClick.bind(this);
+  }
+
+  handleProductClick(id) {
+    this.props.history.push(`/products/${id}`);
+  }
+
   render() {
     return (
       <Row className="product-list">
@@ -15,6 +25,7 @@ class ProductList extends React.Component {
             key={product.id}
             data={product}
             onRemoveClick={this.props.removeProduct}
+            onClick={this.handleProductClick}
           />
         ))}
       </Row>

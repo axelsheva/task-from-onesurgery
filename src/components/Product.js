@@ -12,6 +12,7 @@ class Product extends React.Component {
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
     this.handleRemoveClick = this.handleRemoveClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleMouseEnter() {
@@ -24,6 +25,10 @@ class Product extends React.Component {
 
   handleRemoveClick() {
     this.props.onRemoveClick(this.props.data.id);
+  }
+
+  handleClick() {
+    this.props.onClick(this.props.data.id);
   }
 
   render() {
@@ -42,6 +47,7 @@ class Product extends React.Component {
         <div
           className="product-image"
           style={{ backgroundImage: `url(${this.props.data.imageURL})` }}
+          onClick={this.handleClick}
         />
         <div className="product-name">
           {`${this.props.data.name}, ${this.props.data.price} грн.`}
