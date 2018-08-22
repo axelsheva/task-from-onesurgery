@@ -1,4 +1,5 @@
 import { ADD_PRODUCT, REMOVE_PRODUCT } from "../actions/products";
+import { REMOVE_INGREDIENT } from "../actions/ingredients";
 
 const initialState = [
   {
@@ -44,6 +45,13 @@ const products = (state = initialState, action) => {
       return [...state, action.payload];
     case REMOVE_PRODUCT:
       return state.filter(product => product.id !== action.payload);
+    case REMOVE_INGREDIENT:
+      return state.map(product => ({
+        ...product,
+        ingredientsIds: product.ingredientsIds.filter(
+          id => id !== action.payload
+        )
+      }));
     default:
       return state;
   }

@@ -1,3 +1,5 @@
+import { ADD_INGREDIENT, REMOVE_INGREDIENT } from "../actions/ingredients";
+
 const initialState = [
   {
     id: 1,
@@ -36,8 +38,8 @@ const initialState = [
   },
   {
     id: 8,
-    name: "бекон",
-    price: 13
+    name: "паприка",
+    price: 4
   },
   {
     id: 9,
@@ -61,8 +63,15 @@ const initialState = [
   }
 ];
 
-const ingredients = (state = initialState) => {
-  return state;
+const ingredients = (state = initialState, action) => {
+  switch (action.type) {
+    case ADD_INGREDIENT:
+      return [...state, action.payload];
+    case REMOVE_INGREDIENT:
+      return state.filter(ingredient => ingredient.id !== action.payload);
+    default:
+      return state;
+  }
 };
 
 export default ingredients;

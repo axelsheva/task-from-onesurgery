@@ -27,7 +27,12 @@ export default class Header extends React.Component {
           <Nav className="ml-auto" navbar>
             <NavItem>
               <Link className="nav-link" to="/add-product">
-                Add product
+                Добавить продукт
+              </Link>
+            </NavItem>
+            <NavItem>
+              <Link className="nav-link" to="/add-ingredient">
+                Добавить ингредиент
               </Link>
             </NavItem>
           </Nav>

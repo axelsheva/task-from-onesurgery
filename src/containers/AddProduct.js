@@ -3,15 +3,17 @@ import { Row, Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { connect } from "react-redux";
 
 import { addProduct } from "../actions/products";
+import { selectIngredientsByIds } from "../selectors/ingredients";
 
 class AddProduct extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: "Гамбургер",
+      name: "Мой Гамбургер",
       imageURL:
-        "https://cdn.pizket.com/images/photo/256x256/5389923e674422d00de9adf1e44c0acf.jpg"
+        "https://cdn.pizket.com/images/photo/256x256/5389923e674422d00de9adf1e44c0acf.jpg",
+      ingredientsIds: []
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -29,6 +31,58 @@ class AddProduct extends React.Component {
     this.props.history.push("/");
   }
 
+  handleIngredientClick(id) {
+    const { ingredientsIds } = this.state;
+    const includes = ingredientsIds.includes(id);
+
+    if (includes) {
+      this.setState({
+        ingredientsIds: ingredientsIds.filter(
+          ingredientId => ingredientId !== id
+        )
+      });
+    } else {
+      this.setState({ ingredientsIds: [...ingredientsIds, id] });
+    }
+  }
+
+  renderIngredients() {
+    return (
+      <FormGroup>
+        <Label for="productIngredients">
+          Ингредиенты: (нажмите для добавления / удаления)
+        </Label>
+        {this.props.ingredients.map(ingredient => {
+          const { ingredientsIds } = this.state;
+          const includes = ingredientsIds.includes(ingredient.id);
+          const className = includes
+            ? "ingredient-btn selected-ingredient"
+            : "ingredient-btn";
+
+          return (
+            <div
+              className={className}
+              key={ingredient.id}
+              onClick={this.handleIngredientClick.bind(this, ingredient.id)}
+            >
+              {ingredient.name}, {ingredient.price} грн.
+            </div>
+          );
+        })}
+      </FormGroup>
+    );
+  }
+
+  renderPrice() {
+    const ingredients = selectIngredientsByIds(
+      this.props,
+      this.state.ingredientsIds
+    );
+    const price = ingredients.reduce((prev, cur) => prev + cur.price, 0);
+
+    return <FormGroup>Цена: {price} грн.</FormGroup>;
+  }
+
   render() {
     return (
       <Row className="add-product">
@@ -44,6 +98,8 @@ class AddProduct extends React.Component {
                 value={this.state.name}
                 onChange={this.handleInputChange}
               />
+            </FormGroup>
+            <FormGroup>
               <Label for="productImageURL">Ссылка на изображение</Label>
               <Input
                 type="text"
@@ -52,6 +108,8 @@ class AddProduct extends React.Component {
                 onChange={this.handleInputChange}
               />
             </FormGroup>
+            {this.renderIngredients()}
+            {this.renderPrice()}
             <Button type="submit" onClick={this.handleSubmit}>
               Добавить
             </Button>
@@ -62,11 +120,15 @@ class AddProduct extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  ingredients: state.ingredients
+});
+
 const actions = {
   addProduct
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(AddProduct);
